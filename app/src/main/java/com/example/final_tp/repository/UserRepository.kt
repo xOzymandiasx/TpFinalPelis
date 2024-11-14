@@ -18,4 +18,12 @@ class UserRepository {
   suspend fun updateUser(user: User) {
     userDao.update(user = user)
   }
+
+  suspend fun deleteUser(user: User) {
+    userDao.deleteUser(user = user)
+  }
+
+  suspend fun deleteAll() {
+    userDao.deleteAll()
+  }
 }

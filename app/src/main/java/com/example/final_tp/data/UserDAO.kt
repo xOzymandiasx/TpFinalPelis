@@ -2,6 +2,7 @@ package com.example.final_tp.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -19,4 +20,10 @@ interface UserDAO {
 
   @Update
   suspend fun update(user: User)
+
+  @Delete
+  suspend fun deleteUser(user: User)
+
+  @Query("DELETE FROM user_table")
+  suspend fun deleteAll()
 }

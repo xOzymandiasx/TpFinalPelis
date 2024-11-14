@@ -3,8 +3,13 @@ package com.example.final_tp.ui.list
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -13,7 +18,7 @@ import com.example.final_tp.R
 import com.example.final_tp.databinding.FragmentListBinding
 import com.example.final_tp.ui.UserViewModel
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), MenuProvider {
 
   private lateinit var binding: FragmentListBinding
 
@@ -54,6 +59,40 @@ class ListFragment : Fragment() {
     userViewModel.readAllData.observe(viewLifecycleOwner) { userList ->
       adapter.setList(userList = userList)
     }
+
+    binding.btnDelete.setOnClickListener {
+      deleteUser()
+    }
   }
 
+  override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+    menuInflater.inflate(R.menu.delete_menu, menu)
+  }
+
+  override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+    return when(menuItem.itemId) {
+      R.id.menu_delete -> {
+        deleteUser()
+        true
+      }
+      else -> {
+        false
+      }
+    }
+  }
+
+  private fun deleteUser() {
+    val dialog = AlertDialog.Builder(requireContext())
+    dialog.setTitle("¿Desea borrar todos los registros?")
+    dialog.setMessage("¿Seguro quiere borrar todo?")
+    dialog.setNegativeButton("No") { _, _ ->
+      return@setNegativeButton
+    }
+
+    dialog.setPositiveButton("Si") { _, _ ->
+      userViewModel.deleteAll()
+    }
+
+    dialog.create().show()
+  }
 }

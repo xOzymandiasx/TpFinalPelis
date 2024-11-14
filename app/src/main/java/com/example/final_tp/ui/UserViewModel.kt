@@ -21,12 +21,23 @@ class UserViewModel: ViewModel() {
 
     }
 
-
   }
 
   fun UpdateUser(user: User) {
     viewModelScope.launch {
       repository.updateUser(user = user)
+    }
+  }
+
+  fun deleteUser(user: User) {
+    viewModelScope.launch {
+      repository.deleteUser(user = user)
+    }
+  }
+
+  fun deleteAll() {
+    viewModelScope.launch {
+      repository.deleteAll()
     }
   }
 }
