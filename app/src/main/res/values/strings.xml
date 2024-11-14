@@ -2,4 +2,7 @@
     <string name="app_name">Final_Tp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_apellido">Ingrese su apellido</string>
+    <string name="input_nombre">Ingrese su nombre</string>
+    <string name="input_edad">Ingrese su edad</string>
 </resources>
