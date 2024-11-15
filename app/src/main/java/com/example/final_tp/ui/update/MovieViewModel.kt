@@ -27,5 +27,11 @@ class MovieViewModel: ViewModel() {
     }
   }
 
+  fun deleteAll() {
+    viewModelScope.launch {
+      repository.deleteAll()
+    }
+  }
+
 
 }

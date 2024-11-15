@@ -61,8 +61,25 @@ class ListFragment : Fragment(), MenuProvider {
     }
 
     binding.btnDelete.setOnClickListener {
-     // deleteUser()
+     deleteMovie()
     }
+  }
+
+  private fun deleteMovie() {
+    val dialog = AlertDialog.Builder(requireContext())
+
+    dialog.setTitle("¿Desea eliminar todos los registros?")
+    dialog.setMessage("¿Esta seguro que quiere eliminar todas las películas?")
+
+    dialog.setNegativeButton("No") { _, _ ->
+      return@setNegativeButton
+    }
+
+    dialog.setPositiveButton("Si") { _, _ ->
+      movieViewModel.deleteAll()
+    }
+
+    dialog.create().show()
   }
 
   override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -80,19 +97,4 @@ class ListFragment : Fragment(), MenuProvider {
       }
     }
   }
-
- // private fun deleteUser() {
-   // val dialog = AlertDialog.Builder(requireContext())
-    //dialog.setTitle("¿Desea borrar todos los registros?")
-    //dialog.setMessage("¿Seguro quiere borrar todo?")
-    //dialog.setNegativeButton("No") { _, _ ->
-      //return@setNegativeButton
-    }
-
-    //dialog.setPositiveButton("Si") { _, _ ->
-      //movieViewModel.deleteAll()
-    //}
-
-    //dialog.create().show()
-  //}
-//}
+}
