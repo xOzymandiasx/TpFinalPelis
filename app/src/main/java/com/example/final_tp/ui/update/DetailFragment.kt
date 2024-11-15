@@ -17,7 +17,7 @@ import com.example.final_tp.R
 import com.example.final_tp.data.model.Movies
 import com.example.final_tp.databinding.FragmentDetailBinding
 
-class DetailFragment : Fragment(), MenuProvider {
+class DetailFragment : Fragment() {
 
   var movie: Movies? = null
 
@@ -78,41 +78,5 @@ class DetailFragment : Fragment(), MenuProvider {
 
     dialog.create().show()
   }
-
-  override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-    menuInflater.inflate(R.menu.delete_menu, menu)
-  }
-
-  override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-    TODO("Not yet implemented")
-  }
-
-  //override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-    //return when(menuItem.itemId) {
-      //R.id.menu_delete -> {
-        //deleteUser()
-        //true
-      //}
-      //else -> {
-        //false
-      //}
-    //}
-  //}
-
-//  private fun deleteUser() {
-//    val dialog = AlertDialog.Builder(requireContext())
-//    dialog.setTitle("¿Desea borrar el siguiente registro?")
-//    dialog.setMessage("¿Seguro quiere borrar a ${user!!.name}?")
-//    dialog.setNegativeButton("No") { _, _ ->
-//      return@setNegativeButton
-//    }
-//
-//    dialog.setPositiveButton("Si") { _, _ ->
-//      userViewModel.deleteUser(user = user!!)
-//      findNavController().navigate(R.id.action_detailFragment_to_listFragment)
-//    }
-//
-//    dialog.create().show()
-//  }
 
 }

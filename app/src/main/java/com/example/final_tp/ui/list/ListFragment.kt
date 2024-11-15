@@ -18,7 +18,7 @@ import com.example.final_tp.R
 import com.example.final_tp.databinding.FragmentListBinding
 import com.example.final_tp.ui.update.MovieViewModel
 
-class ListFragment : Fragment(), MenuProvider {
+class ListFragment : Fragment() {
 
   private lateinit var binding: FragmentListBinding
 
@@ -60,7 +60,7 @@ class ListFragment : Fragment(), MenuProvider {
     }
 
     binding.btnDelete.setOnClickListener {
-     deleteMovie()
+      deleteMovie()
     }
   }
 
@@ -79,21 +79,5 @@ class ListFragment : Fragment(), MenuProvider {
     }
 
     dialog.create().show()
-  }
-
-  override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-    menuInflater.inflate(R.menu.delete_menu, menu)
-  }
-
-  override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-    return when(menuItem.itemId) {
-      R.id.menu_delete -> {
-        //deleteUser()
-        true
-      }
-      else -> {
-        false
-      }
-    }
   }
 }
