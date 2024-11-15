@@ -17,12 +17,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.final_tp.R
 import com.example.final_tp.databinding.FragmentListBinding
 import com.example.final_tp.ui.UserViewModel
+import com.example.final_tp.ui.update.MovieViewModel
 
 class ListFragment : Fragment(), MenuProvider {
 
   private lateinit var binding: FragmentListBinding
 
-  private val userViewModel by viewModels<UserViewModel>()
+  private val movieViewModel by viewModels<MovieViewModel>()
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -36,9 +37,9 @@ class ListFragment : Fragment(), MenuProvider {
     super.onViewCreated(view, savedInstanceState)
 
     //val list = arrayListOf("gato", "perro", "conejo", "loro", "ballena")
-    val adapter = ListAdapter { user ->
+    val adapter = ListAdapter { movie ->
       val bundle = Bundle()
-      bundle.putSerializable("user", user) //los datos que pasamos con la key
+      bundle.putSerializable("movie", movie) //los datos que pasamos con la key
       //Aca le decimos a cada uno de los items, hacia el fragment hacia donde nos diriginos
       findNavController().navigate(R.id.action_listFragment_to_detailFragment, bundle)
     }
@@ -56,12 +57,12 @@ class ListFragment : Fragment(), MenuProvider {
       findNavController().navigate(R.id.action_listFragment_to_addFragment)
     }
 
-    userViewModel.readAllData.observe(viewLifecycleOwner) { userList ->
-      adapter.setList(userList = userList)
+    movieViewModel.readAllData.observe(viewLifecycleOwner) { movieList ->
+      adapter.setList(movieList = movieList)
     }
 
     binding.btnDelete.setOnClickListener {
-      deleteUser()
+     // deleteUser()
     }
   }
 
@@ -72,7 +73,7 @@ class ListFragment : Fragment(), MenuProvider {
   override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
     return when(menuItem.itemId) {
       R.id.menu_delete -> {
-        deleteUser()
+        //deleteUser()
         true
       }
       else -> {
@@ -81,18 +82,18 @@ class ListFragment : Fragment(), MenuProvider {
     }
   }
 
-  private fun deleteUser() {
-    val dialog = AlertDialog.Builder(requireContext())
-    dialog.setTitle("¿Desea borrar todos los registros?")
-    dialog.setMessage("¿Seguro quiere borrar todo?")
-    dialog.setNegativeButton("No") { _, _ ->
-      return@setNegativeButton
+ // private fun deleteUser() {
+   // val dialog = AlertDialog.Builder(requireContext())
+    //dialog.setTitle("¿Desea borrar todos los registros?")
+    //dialog.setMessage("¿Seguro quiere borrar todo?")
+    //dialog.setNegativeButton("No") { _, _ ->
+      //return@setNegativeButton
     }
 
-    dialog.setPositiveButton("Si") { _, _ ->
-      userViewModel.deleteAll()
-    }
+    //dialog.setPositiveButton("Si") { _, _ ->
+      //movieViewModel.deleteAll()
+    //}
 
-    dialog.create().show()
-  }
-}
+    //dialog.create().show()
+  //}
+//}
