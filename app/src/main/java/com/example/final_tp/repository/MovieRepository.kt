@@ -31,4 +31,8 @@ class MovieRepository {
    fun inserMovie(movie: Movies) {
     movieDao.insert(movie = movie)
   }
+
+  fun updateUser(movie: Movies) {
+    movieDao.update(movie = movie)
+  }
 }

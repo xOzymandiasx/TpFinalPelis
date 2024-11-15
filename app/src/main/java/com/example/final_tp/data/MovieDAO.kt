@@ -15,7 +15,10 @@ interface MovieDAO {
   fun readAllData(): LiveData<List<Movies>>  //getAll
 
   @Insert(onConflict = OnConflictStrategy.IGNORE)
-   fun insert(movie: Movies)  //Insert
+   suspend fun insert(movie: Movies)  //Insert
+
+   @Update
+   suspend fun update(movie: Movies)
 
   //@Update
   //suspend fun update(movie: Movies)

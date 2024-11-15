@@ -14,16 +14,17 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.final_tp.R
+import com.example.final_tp.data.model.Movies
 import com.example.final_tp.data.model.User
 import com.example.final_tp.databinding.FragmentDetailBinding
 import com.example.final_tp.ui.UserViewModel
 
 class DetailFragment : Fragment(), MenuProvider {
 
-  var user: User? = null
+  var movie: Movies? = null
 
   private lateinit var binding: FragmentDetailBinding
-  private val userViewModel by viewModels<UserViewModel>()
+  private val movieViewModel by viewModels<MovieViewModel>()
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -36,29 +37,29 @@ class DetailFragment : Fragment(), MenuProvider {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    user = arguments?.getSerializable("user") as User
+    movie = arguments?.getSerializable("movie") as Movies
 
-    binding.etName.setText(user!!.name)
-    binding.etLastName.setText(user!!.lastName)
-    binding.etAge.setText(user!!.age.toString())
+    binding.etName.setText(movie!!.movie)
+    binding.etLastName.setText(movie!!.genre)
+    binding.etAge.setText(movie!!.duration.toString())
 
     binding.btnUpdateUser.setOnClickListener {
-      val name = binding.etName.text.toString()
-      val lastName = binding.etLastName.text.toString()
-      val age = binding.etAge.text.toString()
+      val peli = binding.etName.text.toString()
+      val genre = binding.etLastName.text.toString()
+      val duration = binding.etAge.text.toString()
 
-      if (name.isNotBlank() && lastName.isNotBlank() && age.isNotBlank()) {
-        val userCopy = User(user!!.id, name, lastName, age.toInt())
-        userViewModel.UpdateUser(user = userCopy)
+      if (peli.isNotBlank() && genre.isNotBlank() && duration.isNotBlank()) {
+        val movieCopy = Movies(movie!!.id, peli, genre, duration.toInt())
+        movieViewModel.UpdateMovie(movie = movieCopy)
 
         findNavController().navigate(R.id.action_detailFragment_to_listFragment)
       } else {
         Toast.makeText(requireContext(), "Complete todos los campos", Toast.LENGTH_SHORT).show()
       }
     }
-    binding.btnDeleteUser.setOnClickListener {
-      deleteUser()
-    }
+    //binding.btnDeleteUser.setOnClickListener {
+      //deleteUser()
+    //}
 
   }
 
@@ -67,31 +68,35 @@ class DetailFragment : Fragment(), MenuProvider {
   }
 
   override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-    return when(menuItem.itemId) {
-      R.id.menu_delete -> {
-        deleteUser()
-        true
-      }
-      else -> {
-        false
-      }
-    }
+    TODO("Not yet implemented")
   }
 
-  private fun deleteUser() {
-    val dialog = AlertDialog.Builder(requireContext())
-    dialog.setTitle("¿Desea borrar el siguiente registro?")
-    dialog.setMessage("¿Seguro quiere borrar a ${user!!.name}?")
-    dialog.setNegativeButton("No") { _, _ ->
-      return@setNegativeButton
-    }
+  //override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+    //return when(menuItem.itemId) {
+      //R.id.menu_delete -> {
+        //deleteUser()
+        //true
+      //}
+      //else -> {
+        //false
+      //}
+    //}
+  //}
 
-    dialog.setPositiveButton("Si") { _, _ ->
-      userViewModel.deleteUser(user = user!!)
-      findNavController().navigate(R.id.action_detailFragment_to_listFragment)
-    }
+  //private fun deleteUser() {
+    //val dialog = AlertDialog.Builder(requireContext())
+    //dialog.setTitle("¿Desea borrar el siguiente registro?")
+    //dialog.setMessage("¿Seguro quiere borrar a ${user!!.name}?")
+    //dialog.setNegativeButton("No") { _, _ ->
+      //return@setNegativeButton
+    //}
 
-    dialog.create().show()
-  }
+    //dialog.setPositiveButton("Si") { _, _ ->
+      //userViewModel.deleteUser(user = user!!)
+      //findNavController().navigate(R.id.action_detailFragment_to_listFragment)
+    //}
+
+    //dialog.create().show()
+  //}
 
 }

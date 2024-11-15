@@ -36,7 +36,6 @@ class ListFragment : Fragment(), MenuProvider {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    //val list = arrayListOf("gato", "perro", "conejo", "loro", "ballena")
     val adapter = ListAdapter { movie ->
       val bundle = Bundle()
       bundle.putSerializable("movie", movie) //los datos que pasamos con la key

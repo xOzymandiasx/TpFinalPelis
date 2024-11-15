@@ -15,8 +15,9 @@ class MovieViewModel: ViewModel() {
     repository.inserMovie(movie = movie)
   }
 
-
-
+  fun UpdateMovie(movie: Movies) {
+    repository.updateUser(movie = movie)
+  }
 
 
 }
