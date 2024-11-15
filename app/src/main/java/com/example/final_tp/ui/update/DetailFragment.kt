@@ -15,9 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.final_tp.R
 import com.example.final_tp.data.model.Movies
-import com.example.final_tp.data.model.User
 import com.example.final_tp.databinding.FragmentDetailBinding
-import com.example.final_tp.ui.UserViewModel
 
 class DetailFragment : Fragment(), MenuProvider {
 

@@ -14,11 +14,17 @@ class MovieViewModel: ViewModel() {
 
 
   fun insertUser(movie: Movies) {
-    repository.inserMovie(movie = movie)
+    viewModelScope.launch {
+      repository.inserMovie(movie = movie)
+    }
+
   }
 
   fun UpdateMovie(movie: Movies) {
-    repository.updateUser(movie = movie)
+    viewModelScope.launch {
+      repository.updateUser(movie = movie)
+    }
+
   }
 
   fun deleteMovie(movie: Movies) {

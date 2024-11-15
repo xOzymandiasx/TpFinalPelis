@@ -8,7 +8,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final_tp.R
 import com.example.final_tp.data.model.Movies
-import com.example.final_tp.data.model.User
 import com.example.final_tp.databinding.ItemRecyclerviewListBinding
 
 //Creamos una clase, que no existe, del item a repetir, dentro de esta clase

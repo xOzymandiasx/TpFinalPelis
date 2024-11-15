@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.final_tp.R
 import com.example.final_tp.databinding.FragmentListBinding
-import com.example.final_tp.ui.UserViewModel
 import com.example.final_tp.ui.update.MovieViewModel
 
 class ListFragment : Fragment(), MenuProvider {

@@ -10,9 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.final_tp.R
 import com.example.final_tp.data.model.Movies
-import com.example.final_tp.data.model.User
 import com.example.final_tp.databinding.FragmentAddBinding
-import com.example.final_tp.ui.UserViewModel
 import com.example.final_tp.ui.update.MovieViewModel
 
 class AddFragment : Fragment() {
