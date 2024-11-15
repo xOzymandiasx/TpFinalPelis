@@ -20,12 +20,9 @@ interface MovieDAO {
    @Update
    suspend fun update(movie: Movies)
 
-  //@Update
-  //suspend fun update(movie: Movies)
+   @Delete
+   suspend fun deleteMovie(movie: Movies)
 
-  //@Delete
-  //suspend fun deleteUser(movie: Movies)
-
-  //@Query("DELETE FROM movie_table")
-  //suspend fun deleteAll()
+   @Query("DELETE FROM movie_table")
+  suspend fun deleteAll()
 }

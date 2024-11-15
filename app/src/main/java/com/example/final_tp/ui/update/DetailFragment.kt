@@ -57,10 +57,28 @@ class DetailFragment : Fragment(), MenuProvider {
         Toast.makeText(requireContext(), "Complete todos los campos", Toast.LENGTH_SHORT).show()
       }
     }
-    //binding.btnDeleteUser.setOnClickListener {
-      //deleteUser()
-    //}
+    binding.btnDeleteUser.setOnClickListener {
+      deleteMovie()
+    }
 
+  }
+
+  private fun deleteMovie() {
+    val dialog = AlertDialog.Builder(requireContext())
+
+    dialog.setTitle("Desea eliminar este registro")
+    dialog.setMessage("Esta seguro que quiere eliminar ${movie!!.movie}")
+
+    dialog.setNegativeButton("No") { _, _ ->
+      return@setNegativeButton
+    }
+
+    dialog.setPositiveButton("Si") { _, _ ->
+      movieViewModel.deleteMovie(movie = movie!!)
+      findNavController().navigate(R.id.action_detailFragment_to_listFragment)
+    }
+
+    dialog.create().show()
   }
 
   override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -83,20 +101,20 @@ class DetailFragment : Fragment(), MenuProvider {
     //}
   //}
 
-  //private fun deleteUser() {
-    //val dialog = AlertDialog.Builder(requireContext())
-    //dialog.setTitle("¿Desea borrar el siguiente registro?")
-    //dialog.setMessage("¿Seguro quiere borrar a ${user!!.name}?")
-    //dialog.setNegativeButton("No") { _, _ ->
-      //return@setNegativeButton
-    //}
-
-    //dialog.setPositiveButton("Si") { _, _ ->
-      //userViewModel.deleteUser(user = user!!)
-      //findNavController().navigate(R.id.action_detailFragment_to_listFragment)
-    //}
-
-    //dialog.create().show()
-  //}
+//  private fun deleteUser() {
+//    val dialog = AlertDialog.Builder(requireContext())
+//    dialog.setTitle("¿Desea borrar el siguiente registro?")
+//    dialog.setMessage("¿Seguro quiere borrar a ${user!!.name}?")
+//    dialog.setNegativeButton("No") { _, _ ->
+//      return@setNegativeButton
+//    }
+//
+//    dialog.setPositiveButton("Si") { _, _ ->
+//      userViewModel.deleteUser(user = user!!)
+//      findNavController().navigate(R.id.action_detailFragment_to_listFragment)
+//    }
+//
+//    dialog.create().show()
+//  }
 
 }
